@@ -19,6 +19,7 @@ import './video-footer.scss';
 import { isAndroidBrowser, isSupportOffscreenCanvas } from '../../../utils/platform';
 import { getPhoneCallStatusDescription, SELF_VIDEO_ID } from '../video-constants';
 import { getRecordingButtons, RecordButtonProps, RecordingButton } from './recording';
+import { EmojiConsole } from './emoji-console';
 import { DialoutState, RecordingStatus,MutedSource,AudioChangeAction, DialOutOption, VideoCapturingState } from '@zoom/videosdk';
 interface VideoFooterProps {
   className?: string;
@@ -285,6 +286,7 @@ const VideoFooter = (props: VideoFooterProps) => {
       {recordingButtons.map((button: RecordButtonProps) => {
         return <RecordingButton key={button.text} onClick={()=>{onRecordingClick(button.text)}} {...button} />
       })}
+      <EmojiConsole />
       {/* {(zmClient.isManager() || zmClient.isHost())&& (
         <ScreenShareLockButton
         isLockedScreenShare={isLockedScreenShare}

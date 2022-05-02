@@ -1,3 +1,6 @@
 /react-demo/src/config/zoomdev.ts
 /react-demo/src/config/zoom.ts
 /sample-app-videosdk.zip
+*node_modules*
+/purejs-demo
+/API-Reference

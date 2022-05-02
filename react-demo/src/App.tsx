@@ -6,13 +6,14 @@ import React, {
   useReducer,
 } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import ZoomVideo, { ConnectionState } from "@zoom/videosdk";
+import ZoomVideo, { ConnectionState, InitOptions } from "@zoom/videosdk";
 import { message, Modal } from "antd";
 import "antd/dist/antd.css";
 import produce from "immer";
 import Home from "./feature/home/home";
 import Video from "./feature/video/video";
 import VideoSingle from "./feature/video/video-single";
+import Dashboard from "./feature/dashbaord/dashboard";
 import Preview from "./feature/preview/preview";
 import ZoomContext from "./context/zoom-context";
 import ZoomMediaContext from "./context/media-context";
@@ -104,7 +105,7 @@ function App(props: AppProps) {
   
   useEffect(() => {
     const init = async () => {
-      await zmClient.init("en-US", `${window.location.origin}/lib`, 'zoom.us');
+      await zmClient.init("en-US", `${window.location.origin}/lib`, 'zoom.us' as InitOptions);
       try {
         setLoadingText("Joining the session...");
         await zmClient.join(topic, signature, name, password);
@@ -120,7 +121,8 @@ function App(props: AppProps) {
         setIsLoading(false);
       } catch (e) {
         setIsLoading(false);
-        message.error(e.reason);
+        //message.error(e);
+        console.log(e)
       }
     };
     init();
@@ -230,6 +232,7 @@ function App(props: AppProps) {
                 <Route path="/video" component={isSupportGalleryView ? Video : VideoSingle} />
                 <Route path="/chat" component={Chat} />
                 <Route path="/command" component={Command} />
+                <Route path="/dashboard" component={Dashboard} />
               </Switch>
             </Router>
             </CommandContext.Provider>

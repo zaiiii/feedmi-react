@@ -1,8 +1,10 @@
 import { KJUR } from 'jsrsasign';
 
+//993 5272 0844
+
 export function generateVideoToken(
-  sdkKey: string,
-  sdkSecret: string,
+  sdkKey: string = '',
+  sdkSecret: string = '',
   topic: string,
   passWord = '',
   sessionKey = '',
